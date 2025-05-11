@@ -1,5 +1,7 @@
 # machine-learning
 Projects, Presentations, Code
+
+---
 Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
 
 This work is licensed under a
