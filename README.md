@@ -1,5 +1,12 @@
 # machine-learning
 Projects, Presentations, Code
+# machine-learning
+
+| Folder | Project | Status |
+|--------|---------|--------|
+| /s4-mamba | S4-Mamba presentation (April 2025) | ✅ **Completed** |
+| /flash-attention | Following [Umar Jamil's video](https://www.youtube.com/watch?v=zy8ChVd_oTM) and [repo](https://github.com/hkproj/triton-flash-attention) | 🟠 **In Progress** |
+
 
 ---
 Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
