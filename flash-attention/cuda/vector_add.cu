@@ -18,7 +18,7 @@ __global__ void cuda_vector_add_simple(EL_TYPE *OUT, EL_TYPE *A, EL_TYPE *B, int
     }
 }
 
-void test_vector_add(int N)
+void test_vector_add(int N, int block_size)
 {
     EL_TYPE *A, *B, *OUT;
     EL_TYPE *d_A, *d_B, *d_OUT;

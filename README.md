@@ -5,7 +5,7 @@ Projects, Presentations, Code
 | Folder | Project | Status |
 |--------|---------|--------|
 | /s4-mamba | S4-Mamba presentation (April 2025) | ✅ **Completed** |
-| /flash-attention | Following [Umar Jamil's video](https://www.youtube.com/watch?v=zy8ChVd_oTM) and [repo](https://github.com/hkproj/triton-flash-attention) | 🟠 **In Progress** |
+| /flash-attention | Implementing Flash Attention in Python using Triton Following [triton documentation](https://triton-lang.org/main/index.html),  [this repo](https://github.com/hkproj/triton-flash-attention) and [this video](https://www.youtube.com/watch?v=zy8ChVd_oTM).  | 🟠 **In Progress** |
 
 
 ---

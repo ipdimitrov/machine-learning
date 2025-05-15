@@ -4,6 +4,7 @@
         "random": "cpp",
         "cmath": "cpp",
         "chrono": "cpp",
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "variant": "cpp"
     }
 }

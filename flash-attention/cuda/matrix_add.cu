@@ -11,11 +11,12 @@ typedef float EL_TYPE;
 
 __global__ void cuda_matrix_add_simple(EL_TYPE *OUT, EL_TYPE *A, EL_TYPE *B, int NUM_ROWS, int NUM_COLS)
 {
-    int i = blockIdx.x * blockDim.x + threadIdx.x
-    int i = blockIdx.x * blockDim.x + threadIdx.x
-    if (i < N)
+    int row_index = blockIdx.y * blockDim.y + threadIdx.y
+    int col_index = blockIdx.x * blockDim.x + threadIdx.x
+    if (row_index < NUM_ROWS && col_index < NUM_COLS)
     {
-        OUT[i] = A[i] + B[i];
+        size_t index = static_cast<size_t>(row_index)*NUM_COLS + col_index // A[row_index][col_index]
+        OUT[index] = A[index] + B[index];
     }
 }
 
@@ -51,8 +52,8 @@ void test_matrix_add(int NUM_ROWS, int NUM_COLS, int ROWS_block_size, int COLS_b
 
 
     // Define the launch grid
-    int num_blocks_ROWS = ceil((NUM_ROWS + ROWS_block_size -1) / ROWS_block_size);
-    int num_blocks_COLS = ceil((NUM_COLS + COLS_block_size -1) / COLS_block_size);
+    int num_blocks_ROWS = (NUM_ROWS + ROWS_block_size -1) / ROWS_block_size; //this is same as ceil(NUM_ROWS / ROWS_block_size)
+    int num_blocks_COLS = (NUM_COLS + COLS_block_size -1) / COLS_block_size; //this is same as ceil(NUM_COLS / COLS_block_size)
     printf("Matrix Add - N: %d will be processed by %d blocks of size %d\n", N, num_blocks, block_size)
     dim3 grid(num_blocks_COLS, num_blocks_ROWS, 1);
     dim3 block(ROWS_block_size, ROWS_block_size, 1);
