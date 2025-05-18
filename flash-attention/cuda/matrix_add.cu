@@ -1,21 +1,21 @@
-#include <studio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
 #include <cuda.h>
 #include <cuda_runtime.h>
-#include <sys/time/h>
-#include "cuda_common.h"
+#include <sys/time.h>
+#include "cuda_common.cuh"
 
 typedef float EL_TYPE;
 
 __global__ void cuda_matrix_add_simple(EL_TYPE *OUT, EL_TYPE *A, EL_TYPE *B, int NUM_ROWS, int NUM_COLS)
 {
-    int row_index = blockIdx.y * blockDim.y + threadIdx.y
-    int col_index = blockIdx.x * blockDim.x + threadIdx.x
+    int row_index = blockIdx.y * blockDim.y + threadIdx.y;
+    int col_index = blockIdx.x * blockDim.x + threadIdx.x;
     if (row_index < NUM_ROWS && col_index < NUM_COLS)
     {
-        size_t index = static_cast<size_t>(row_index)*NUM_COLS + col_index // A[row_index][col_index]
+        size_t index = static_cast<size_t>(row_index)*NUM_COLS + col_index; // A[row_index][col_index]
         OUT[index] = A[index] + B[index];
     }
 }
@@ -41,7 +41,7 @@ void test_matrix_add(int NUM_ROWS, int NUM_COLS, int ROWS_block_size, int COLS_b
         }
     }
 
-    // Allocate device memory for a 
+    // Allocate device memory for a, b, and out
     CUDA_CHECK(cudaMalloc((void **)&d_A, sizeof(EL_TYPE) * NUM_ROWS * NUM_COLS));
     CUDA_CHECK(cudaMalloc((void **)&d_B, sizeof(EL_TYPE) * NUM_ROWS * NUM_COLS));
     CUDA_CHECK(cudaMalloc((void **)&d_OUT, sizeof(EL_TYPE) * NUM_ROWS * NUM_COLS));
@@ -54,7 +54,7 @@ void test_matrix_add(int NUM_ROWS, int NUM_COLS, int ROWS_block_size, int COLS_b
     // Define the launch grid
     int num_blocks_ROWS = (NUM_ROWS + ROWS_block_size -1) / ROWS_block_size; //this is same as ceil(NUM_ROWS / ROWS_block_size)
     int num_blocks_COLS = (NUM_COLS + COLS_block_size -1) / COLS_block_size; //this is same as ceil(NUM_COLS / COLS_block_size)
-    printf("Matrix Add - N: %d will be processed by %d blocks of size %d\n", N, num_blocks, block_size)
+    printf("Matrix Add - M: %d, N: %d will be processed by (%d x %d) blocks of size (%d x %d)\n", NUM_ROWS, NUM_COLS, num_blocks_ROWS, num_blocks_COLS, ROWS_block_size, COLS_block_size);
     dim3 grid(num_blocks_COLS, num_blocks_ROWS, 1);
     dim3 block(ROWS_block_size, ROWS_block_size, 1);
 
@@ -74,7 +74,7 @@ void test_matrix_add(int NUM_ROWS, int NUM_COLS, int ROWS_block_size, int COLS_b
     // Calculate elapsed milliseconds
     float milliseconds_kernel = 0;
     CUDA_CHECK(cudaEventElapsedTime(&milliseconds_kernel, start_kernel, stop_kernel));
-    printf("Vector Add - elapsed time: %f ms\n", milliseconds_kernel)
+    printf("Vector Add - elapsed time: %f ms\n", milliseconds_kernel);
 
     // Copy back the result from the device to the host
     CUDA_CHECK(cudaMemcpy(OUT, d_OUT, sizeof(EL_TYPE) * NUM_ROWS * NUM_COLS, cudaMemcpyDeviceToHost));
@@ -85,29 +85,29 @@ void test_matrix_add(int NUM_ROWS, int NUM_COLS, int ROWS_block_size, int COLS_b
 
     // Time the operation
     struct timeval start_check, end_check;
-    gettimeofday(&start_check, NULL)
+    gettimeofday(&start_check, NULL);
 
-    for (int i = 0; i < NUM_ROWS, i ++)
+    for (int i = 0; i < NUM_ROWS; i ++)
     {
-        for (int j = 0; j < NUM_COLS, j ++)
+        for (int j = 0; j < NUM_COLS; j ++)
         {
             size_t index = static_cast<size_t>(i) * NUM_COLS + j;
             // check if result is correct
             if (OUT[index] != A[index] + B[index])
             {
-                printf("Error at index (%d, %d): %.2f != %.2f + %.2f\n", i, j, OUT[i], A[i], B[i])
+                printf("Error at index (%d, %d): %.2f != %.2f + %.2f\n", i, j, OUT[index], A[index], B[index]);
                 exit(1);
             }
         }
     }
 
     //  Calculate elapsed time
-    gettimeofday(&end_check, NULL)
+    gettimeofday(&end_check, NULL);
     float elapsed = (end_check.tv_sec - start_check.tv_sec) * 1000.0 + (end_check.tv_usec - start_check.tv_usec) / 1000.0;
-    printf("Matrix Add - Check elapsed time: %f ms\n")
+    printf("Matrix Add - Check elapsed time: %f ms\n");
 
 
-    printf("Matrix Add - result OK\n")
+    printf("Matrix Add - result OK\n");
 
     // Free the memory on the host
     free(A);
@@ -121,5 +121,5 @@ int main()
     //set your seed
     srand(42);
 
-    test_vector_add(100000, 100000, 16, 16)
+    test_matrix_add(100000, 100000, 16, 16);
 }

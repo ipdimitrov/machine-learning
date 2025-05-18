@@ -1,17 +1,17 @@
-#include <studio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
 #include <cuda.h>
 #include <cuda_runtime.h>
-#include <sys/time/h>
-#include "cuda_common.h"
+#include <sys/time.h>
+#include "cuda_common.cuh"
 
 typedef int EL_TYPE;
 
 __global__ void cuda_vector_add_simple(EL_TYPE *OUT, EL_TYPE *A, EL_TYPE *B, int N)
 {
-    int i = blockIdx.x * blockDim.x + threadIdx.x
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
     if (i < N)
     {
         OUT[i] = A[i] + B[i];
@@ -47,7 +47,7 @@ void test_vector_add(int N, int block_size)
 
     // Define the launch grid
     int num_blocks = ceil((float)N / block_size);
-    printf("Vector Add - N: %d will be processed by %d blocks of size %d\n", N, num_blocks, block_size)
+    printf("Vector Add - N: %d will be processed by %d blocks of size %d\n", N, num_blocks, block_size);
     dim3 grid(num_blocks, 1, 1);
     dim3 block(block_size, 1, 1);
 
@@ -67,7 +67,7 @@ void test_vector_add(int N, int block_size)
     // Calculate elapsed milliseconds
     float milliseconds_kernel = 0;
     CUDA_CHECK(cudaEventElapsedTime(&milliseconds_kernel, start_kernel, stop_kernel));
-    printf("Vector Add - elapsed time: %f ms\n", milliseconds_kernel)
+    printf("Vector Add - elapsed time: %f ms\n", milliseconds_kernel);
 
     // Copy back the result from the device to the host
     CUDA_CHECK(cudaMemcpy(OUT, d_OUT, sizeof(EL_TYPE) * N, cudaMemcpyDeviceToHost));
@@ -78,23 +78,23 @@ void test_vector_add(int N, int block_size)
 
     // Time the operation
     struct timeval start_check, end_check;
-    gettimeofday(&start_check, NULL)
+    gettimeofday(&start_check, NULL);
 
-    for (int i = 0; i < N, i ++)
+    for (int i = 0; i < N; i ++)
     {
         // check if result is correct
         if (OUT[i] != A[i] + B[i])
         {
-            printf("Error at index %d: %d != %d + %d\n", i, OUT[i], A[i], B[i])
+            printf("Error at index %d: %d != %d + %d\n", i, OUT[i], A[i], B[i]);
             exit(1);
         }
     }
 
     //  Calculate elapsed time
-    gettimeofday(&end_check, NULL)
+    gettimeofday(&end_check, NULL);
     float elapsed = (end_check.tv_sec - start_check.tv_sec) * 1000.0 + (end_check.tv_usec - start_check.tv_usec) / 1000.0;
-    printf("Vector Add - Check elapsed time: %f ms\n")
-    printf("Vector Add - result OK\n")
+    printf("Vector Add - Check elapsed time: %f ms\n", elapsed);
+    printf("Vector Add - result OK\n");
 
     // Free the memory on the host
     free(A);
@@ -108,5 +108,5 @@ int main()
     //set your seed
     srand(42);
 
-    test_vector_add(10000000, 128)
+    test_vector_add(10000000, 128);
 }
