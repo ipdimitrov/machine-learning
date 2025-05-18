@@ -4,8 +4,8 @@ Projects, Presentations, Code
 
 | Folder | Project | Status |
 |--------|---------|--------|
-| /s4-mamba | S4-Mamba presentation (April 2025) | ✅ **Completed** |
-| /flash-attention | Implementing Flash Attention in Python using Triton Following [triton documentation](https://triton-lang.org/main/index.html),  [this repo](https://github.com/hkproj/triton-flash-attention) and [this video](https://www.youtube.com/watch?v=zy8ChVd_oTM).  | 🟠 **In Progress** |
+| /s4-mamba | S4-Mamba presentation (April 2025) | 🟢 **Completed** |
+| /flash-attention | I've written a [blog post](https://dimitrov.substack.com/p/implementing-flash-attention) explaining my implementation of Flash Attention in Python using Triton. The implementation follows [triton documentation](https://triton-lang.org/main/index.html), [this repo](https://github.com/hkproj/triton-flash-attention) and [this video](https://www.youtube.com/watch?v=zy8ChVd_oTM). | 🟢 **Completed** |
 
 
 ---
