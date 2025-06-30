@@ -4,9 +4,14 @@ Projects, Presentations, Code
 
 | Folder | Project | Status |
 |--------|---------|--------|
-| /s4-mamba | S4-Mamba presentation (April 2025) | 🟢 **Completed** |
-| /flash-attention | I've written a [blog post](https://dimitrov.substack.com/p/implementing-flash-attention) explaining my implementation of Flash Attention in Python using Triton. The implementation follows [triton documentation](https://triton-lang.org/main/index.html), [this repo](https://github.com/hkproj/triton-flash-attention) and [this video](https://www.youtube.com/watch?v=zy8ChVd_oTM). | 🟢 **Completed** |
+| /s4-mamba | S4-Mamba presentation (April 2025) | ✅ **Completed** |
+| /flash-attention | I've written a [blog post](https://dimitrov.substack.com/p/implementing-flash-attention) explaining my implementation of Flash Attention in Python using Triton. The implementation follows [triton documentation](https://triton-lang.org/main/index.html), [this repo](https://github.com/hkproj/triton-flash-attention) and [this video](https://www.youtube.com/watch?v=zy8ChVd_oTM). | ✅ **Completed** |
+| /transformer-from-scratch | Implementation of transformers from scratch following exercises from [ARENA_3.0](https://github.com/callummcdougall/ARENA_3.0). All code fully written by me. | 🟠 **In Progress** |
 
+
+---
+
+*The format of this page is inspired by [SolbiatiAlessandro/machine-learning](https://github.com/SolbiatiAlessandro/machine-learning?tab=readme-ov-file)*
 
 ---
 Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]

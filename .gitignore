@@ -1,3 +1,4 @@
 *.deb
 venv*
 *.out
+testing*

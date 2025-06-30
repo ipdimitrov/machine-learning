@@ -6,12 +6,12 @@ This repository contains machine learning implementations focusing on Flash Atte
 
 | Project | Status |
 |---------|--------|
-| Implementing Flash Attention in Python using Triton | 🟢 **Completed** |
-| Instructions for running Triton and CUDA code locally | 🟢 **Completed** |
-| [Blog post](https://dimitrov.substack.com/p/implementing-flash-attention) explaining Flash Attention implementation| 🟢 **Completed**  |
-| Shell scripts to run and benchmark Flash Attention | 🔴 **Planned** |
-| Implementing Matrix Multiplication using Triton | 🔴 **Planned** |
-| Implementing Layer Normalization using Triton | 🔴 **Planned** |
+| Implementing Flash Attention in Python using Triton | ✅ **Completed** |
+| Instructions for running Triton and CUDA code locally | ✅ **Completed** |
+| [Blog post](https://dimitrov.substack.com/p/implementing-flash-attention) explaining Flash Attention implementation| ✅ **Completed**  |
+| Shell scripts to run and benchmark Flash Attention | Not Started |
+| Implementing Matrix Multiplication using Triton | Not Started |
+| Implementing Layer Normalization using Triton | Not Started |
 
 ## Flash Attention Implementation
 
