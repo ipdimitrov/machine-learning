@@ -8,9 +8,9 @@ This project implements a transformer model from scratch following exercises fro
 |----------|-------------|--------|
 | LayerNorm | Implementation of Layer Normalization | ✅ **Completed** |
 | Embed | Implementation of token embedding layer | ✅ **Completed** |
-| PosEmbed | Implementation of positional embedding | 🟠 **In Progress** |
-| apply_causal_mask | Implementation of causal masking for attention | Not Started |
-| Attention | Implementation of attention mechanism | Not Started |
+| PosEmbed | Implementation of positional embedding | ✅ **Completed** |
+| apply_causal_mask | Implementation of causal masking for attention | ✅ **Completed** |
+| Attention | Implementation of attention mechanism | 🟠 **In Progress** |
 | MLP | Implementation of Multi-Layer Perceptron | Not Started |
 | TransformerBlock | Implementation of a complete transformer block | Not Started |
 | Unembed | Implementation of output projection layer | Not Started |
